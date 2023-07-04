@@ -37,15 +37,15 @@ def get_dealers_by_state(state):
     return rlist
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
-def get_reviews_by_id_from_cf(dealerId):
+def get_reviews_by_id_from_cf(dealer_id):
     f = open('/home/project/ibmCapstone/cloudant/data/reviews-full.json')
     data = json.load(f)
     f.close()
     rlist = {'reviews':[]}
     for review in data['reviews']:
-        if review['dealership'] == 3:
-            rlist['reviews'].append(dealership)
-    return rlist
+        if review['dealership'] == dealer_id:
+            rlist['reviews'].append(review)
+    return rlist['reviews']
     #dealers = get_request(url, {"dealer":dealerId})
 # - Call get_request() with specified arguments
 # - Parse JSON results into a DealerView object list
@@ -56,6 +56,7 @@ def post_review(payload):
     data['reviews'].append(payload)
     f.write(data)
     f.close()
+
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
 # def analyze_review_sentiments(text):
 # - Call get_request() with specified arguments

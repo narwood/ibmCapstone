@@ -26,12 +26,12 @@ urlpatterns = [
 
     path(route='', view=views.get_dealerships, name='index'),
 
-    path(route='/api/dealership', view=views.get_dealerships, name='dealers'),
+    path(route='api/dealership/', view=views.get_dealerships, name='dealers'),
 
     # path for dealer reviews view
-    path(route='/api/review', view=views.get_dealer_details, name='details'),
+    path(route='api/review/<int:dealer_id>/', view=views.get_dealer_details, name='details'),
 
     # path for add a review view
-    #path(route='/api/review', view=views.add_review, name='add_review')
+    path(route='api/review/', view=views.add_review, name='add_review')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
